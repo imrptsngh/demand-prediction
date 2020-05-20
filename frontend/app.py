@@ -18,6 +18,10 @@ def home():
 def prediction():
     return render_template('prediction.html')
 
+@app.route('/graphs')
+def graphs():
+    return render_template('graphs.html')
+
 
 global loaded_model
 loaded_model = pickle.load(open("new_model.sav", "rb"))
