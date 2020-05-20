@@ -27,19 +27,13 @@ loaded_model = pickle.load(open("new_model.sav", "rb"))
 def result():
 
     if request.method == 'POST':
-        print("inside post")
         to_predict_list = request.form.to_dict()
-        print(to_predict_list)
         to_predict_list = list(to_predict_list.values())
-        #to_predict_list = list(map(int, to_predict_list))
         to_predict = np.array(to_predict_list).reshape(1, 10)
-
         result = loaded_model.predict(to_predict)
-        #result = ValuePredictor(to_predict_list)
         resultarr = list(result[0])
         tload = "{:.2f}".format(float(resultarr[0]))
         price = "{:.2f}".format(float(resultarr[1]))
-
         prediction = {"price": price, "load": tload}
     return render_template("result.html", prediction=prediction)
 
