@@ -51,19 +51,19 @@
                 </div>
             </div>
         </div>
-        <form>
+        <form action="/result" method="POST">
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label for="hydro-pump" class="bmd-label-floating">Hydro Pumped Storage Consumption</label>
-                        <input type="text" class="form-control" id="hydro-pump">
+                        <input type="text" class="form-control" id="hydro-pump" name="hydro-pump">
                         <span class="bmd-help">Range:[1,3000]</span>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label for="fossil-gas" class="bmd-label-floating">Generation Fossil Gas</label>
-                        <input type="text" class="form-control" id="fossil-gas">
+                        <input type="text" class="form-control" id="fossil-gas" name="fossil-gas">
                         <span class="bmd-help">Range:[1,3000]</span>
 
                     </div>
@@ -73,14 +73,14 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label for="fossil-oil" class="bmd-label-floating">Generation Fossil Oil</label>
-                        <input type="text" class="form-control" id="fossil-oil">
+                        <input type="text" class="form-control" id="fossil-oil" name="fossil-oil">
                         <span class="bmd-help">Range:[100,12500]</span>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label for="forecast-solar" class="bmd-label-floating">Forecast Solar Day Ahead</label>
-                        <input type="text" class="form-control" id="forecast-solar">
+                        <input type="text" class="form-control" id="forecast-solar" name="forecast-solar">
                         <span class="bmd-help">Range:[1,6000]</span>
 
                     </div>
@@ -90,7 +90,7 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label for="hydro-res" class="bmd-label-floating">Hydro Water Reservoir</label>
-                        <input type="text" class="form-control" id="hydro-res">
+                        <input type="text" class="form-control" id="hydro-res" name="hydro-res">
                         <span class="bmd-help">Range:[400,6000]</span>
                     </div>
                 </div>
@@ -98,7 +98,7 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label for="gen-wind" class="bmd-label-floating">Generation Wind Onshore</label>
-                        <input type="text" class="form-control" id="gen-wind">
+                        <input type="text" class="form-control" id="gen-wind" name="gen-wind">
                         <span class="bmd-help">Range:[2000,14000]</span>
 
                     </div>
@@ -108,7 +108,7 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label for="gen-solar" class="bmd-label-floating">Generation Solar</label>
-                        <input type="text" class="form-control" id="gen-solar">
+                        <input type="text" class="form-control" id="gen-solar" name="gen-solar">
                         <span class="bmd-help">Range:[20,4000]</span>
                     </div>
                 </div>
@@ -116,7 +116,7 @@
                     <div class="form-group">
                         <label for="forecast-wind" class="bmd-label-floating">Forecast Wind Onshore Day
                             Ahead</label>
-                        <input type="text" class="form-control" id="forecast-wind">
+                        <input type="text" class="form-control" id="forecast-wind" name="forecast-wind">
                         <span class="bmd-help">Range:[200,12000]</span>
                     </div>
                 </div>
@@ -126,7 +126,7 @@
                     <div class="form-group">
                         <label for="hydro-ror" class="bmd-label-floating">Hydro Run-of-River and
                             Poundage</label>
-                        <input type="text" class="form-control" id="hydro-ror">
+                        <input type="text" class="form-control" id="hydro-ror" name="hydro-ror">
                         <span class="bmd-help">Range:[300,1000]</span>
                     </div>
                 </div>
@@ -134,7 +134,7 @@
                     <div class="form-group">
                         <label for="fossil-coal" class="bmd-label-floating">Generation Fossil Hard
                             Coal</label>
-                        <input type="text" class="form-control" id="fossil-coal">
+                        <input type="text" class="form-control" id="fossil-coal" name="fossil-coal">
                         <span class="bmd-help">Range:[2000,10000]</span>
                     </div>
                 </div>
@@ -144,7 +144,7 @@
         <div class="row">
             <div class="col text-center" style="padding-bottom: 25px; padding-top: 15px;">
                 <button class="btn btn-default btn-raised">Clear</button>
-                <button type="submit" class="btn btn-danger btn-raised">Submit</button>
+                <button type="submit" class="btn btn-danger btn-raised" >Submit</button>
                 <button type="button" class="btn btn-danger btn-raised" onclick=generate()>Generate Values</button>
             </div>
         </div>

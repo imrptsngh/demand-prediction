@@ -1,6 +1,29 @@
 {% extends 'base.html'%}
 {% block content %}
 
+<div class="tm-main-content">
+    <div class="table-responsive">
+        <table class="table table-hover table-striped tm-table-striped-even mt-3">
+            <thead>
+                <tr class="tm-bg-gray">
+                    <th scope="col"> Price (&euro;)</th>
+                    <th scope="col" class="text-center">Total Load (MW)</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
 
+                    <td class="tm-product-name">{{prediction.price}} </td>
+                    <td class="text-center">{{ prediction.load }}</td>
+                    <td>
+                        <p id="demo"></p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
 
 {% endblock content %}
