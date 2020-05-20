@@ -1,6 +1,31 @@
 {% extends 'base.html'%}
 
 {% block content %}
+<script>
+    var data = '{"store": [{"min": "1","max": "3000"}],"fwind": [{"min": "200","max": "12000"}],"coal": [{"min": "2000","max": "10000"}],"gas": [{"min": "100","max": "12500"}],"oil": [{"min": "100","max": "500"}],"pound": [{"min": "300","max": "1000"}],"res": [{"min": "400","max": "6000"}],"gwind": [{"min": "2000","max": "14000"}],"solar": [{"min": "20","max": "4000"}],"fsolar": [{"min": "1","max": "6000"}] }';
+
+    var json = JSON.parse(data);
+
+    function getRndInteger(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        num = Math.floor(Math.random() * (max - min + 1)) + min;
+        return num;
+    }
+    function generate() {
+        document.getElementById('hydro-pump').value = getRndInteger(json.store[0].min, json.store[0].max)
+        document.getElementById('forecast-wind').value = getRndInteger(json.fwind[0].min, json.fwind[0].max)
+        document.getElementById('fossil-coal').value = getRndInteger(json.coal[0].min, json.coal[0].max)
+        document.getElementById('forecast-solar').value = getRndInteger(json.gas[0].min, json.gas[0].max)
+        document.getElementById('fossil-oil').value = getRndInteger(json.oil[0].min, json.oil[0].max)
+        document.getElementById('hydro-ror').value = getRndInteger(json.pound[0].min, json.pound[0].max)
+        document.getElementById('hydro-res').value = getRndInteger(json.res[0].min, json.res[0].max)
+        document.getElementById('gen-wind').value = getRndInteger(json.gwind[0].min, json.gwind[0].max)
+        document.getElementById('gen-solar').value = getRndInteger(json.solar[0].min, json.solar[0].max)
+        document.getElementById('fossil-gas').value = getRndInteger(json.fsolar[0].min, json.fsolar[0].max)
+    }
+
+</script>
 <div class="page-header header-filter" data-parallax="true"
     style="background-image: url('static/assets/img/energy-prediction.png')">
     <div class="container">
@@ -120,7 +145,7 @@
             <div class="col text-center" style="padding-bottom: 25px; padding-top: 15px;">
                 <button class="btn btn-default btn-raised">Clear</button>
                 <button type="submit" class="btn btn-danger btn-raised">Submit</button>
-                <button type="button" class="btn btn-danger btn-raised">Generate Values</button>
+                <button type="button" class="btn btn-danger btn-raised" onclick=generate()>Generate Values</button>
             </div>
         </div>
     </div>
