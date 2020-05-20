@@ -1,0 +1,133 @@
+{% extends 'base.html'%}
+
+{% block content %}
+<div class="page-header header-filter" data-parallax="true"
+    style="background-image: url('static/assets/img/energy-prediction.png')">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h1 class="title">Live Energy Prediction</h1>
+                <h4>Here we ask the user to enter 10 different values and on the basis of those values we run our
+                    prediction models and fetch the predict the values of Energy(in MW) & Price (in €) </h4>
+                <br>
+                <a href="#hydro-pump" class="btn btn-danger btn-raised btn-lg">
+                    <i class="fa fa-line-chart"></i> Live Prediction
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="main main-raised">
+    <div class="container">
+        <div class="section text-center">
+            <div class="row">
+                <div class="col-md-8 ml-auto mr-auto">
+                    <h2 class="title">Live Prediction</h2>
+                </div>
+            </div>
+        </div>
+        <form>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="hydro-pump" class="bmd-label-floating">Hydro Pumped Storage Consumption</label>
+                        <input type="text" class="form-control" id="hydro-pump">
+                        <span class="bmd-help">Range:[1,3000]</span>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="fossil-gas" class="bmd-label-floating">Generation Fossil Gas</label>
+                        <input type="text" class="form-control" id="fossil-gas">
+                        <span class="bmd-help">Range:[1,3000]</span>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="fossil-oil" class="bmd-label-floating">Generation Fossil Oil</label>
+                        <input type="text" class="form-control" id="fossil-oil">
+                        <span class="bmd-help">Range:[100,12500]</span>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="forecast-solar" class="bmd-label-floating">Forecast Solar Day Ahead</label>
+                        <input type="text" class="form-control" id="forecast-solar">
+                        <span class="bmd-help">Range:[1,6000]</span>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="hydro-res" class="bmd-label-floating">Hydro Water Reservoir</label>
+                        <input type="text" class="form-control" id="hydro-res">
+                        <span class="bmd-help">Range:[400,6000]</span>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="gen-wind" class="bmd-label-floating">Generation Wind Onshore</label>
+                        <input type="text" class="form-control" id="gen-wind">
+                        <span class="bmd-help">Range:[2000,14000]</span>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="gen-solar" class="bmd-label-floating">Generation Solar</label>
+                        <input type="text" class="form-control" id="gen-solar">
+                        <span class="bmd-help">Range:[20,4000]</span>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="forecast-wind" class="bmd-label-floating">Forecast Wind Onshore Day
+                            Ahead</label>
+                        <input type="text" class="form-control" id="forecast-wind">
+                        <span class="bmd-help">Range:[200,12000]</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="hydro-ror" class="bmd-label-floating">Hydro Run-of-River and
+                            Poundage</label>
+                        <input type="text" class="form-control" id="hydro-ror">
+                        <span class="bmd-help">Range:[300,1000]</span>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="fossil-coal" class="bmd-label-floating">Generation Fossil Hard
+                            Coal</label>
+                        <input type="text" class="form-control" id="fossil-coal">
+                        <span class="bmd-help">Range:[2000,10000]</span>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col text-center" style="padding-bottom: 25px; padding-top: 15px;">
+                <button class="btn btn-default btn-raised">Clear</button>
+                <button type="submit" class="btn btn-danger btn-raised">Submit</button>
+                <button type="button" class="btn btn-danger btn-raised">Generate Values</button>
+            </div>
+        </div>
+    </div>
+    </form>
+
+
+</div>
+</div>
+
+{%endblock content%}
