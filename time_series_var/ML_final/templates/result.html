@@ -1,0 +1,133 @@
+{% extends 'base.html'%}
+{% block content %}
+<div class="page-header header-filter" data-parallax="true"
+    style="background-image: url('static/assets/img/energy-prediction.png')">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h1 class="title">Results</h1>
+                <h4> </h4>
+                <br>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="main main-raised">
+    <div class="container">
+        <div class="section text-center">
+            <div class="row">
+                <div class="col-md-8 ml-auto mr-auto">
+                    <h2 class="title">Values Predicted by the Machine Learning Model</h2>
+               
+
+        <table class="table table-hover table-striped tm-table-striped-even mt-3">
+            <thead>
+                <tr class="tm-bg-gray">
+                    <th scope="col"> Price (&euro;)</th>
+                    <th scope="col" class="text-center">Total Load (MW)</th>
+                   
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="tm-product-name">{{'%0.2f'|format(prediction.price_actual| float)}} </td>
+                    <td class="text-center">{{'%0.2f'| format(prediction.total_load_actual| float)}}</td>
+                </tr>
+            </tbody>
+            <br/>
+            <br>
+        </table>
+
+        <table id="hiddentable" class="table table-hover table-striped tm-table-striped-even mt-3">
+            <thead>
+                <tr class="tm-bg-gray">
+                    <th scope="col">Generation Types</th>
+                    <th scope="col" class="text-center">Values</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="tm-product-name">Generation Biomass</td>
+                    <td class="text-center">{{'%0.2f'| format(prediction.gen_biomass| float)}}</td>
+                </tr>
+                <tr>
+                    <td class="tm-product-name">Generation Fossil Coal</td>
+                    <td class="text-center">{{'%0.2f'| format(prediction.gen_fossil_coal| float)}}</td>
+                </tr>
+                <tr>
+                    <td class="tm-product-name">Generation Fossil Gas</td>
+                    <td class="text-center">{{'%0.2f'| format(prediction.gen_fossil_gas| float)}}</td>
+                </tr>
+                <tr>
+                    <td class="tm-product-name">Generation Fossil Hard Coal</td>
+                    <td class="text-center">{{'%0.2f'| format(prediction.gen_fossil_hard_coal| float)}}</td>
+                </tr>
+                <tr>
+                    <td class="tm-product-name">Generation Fossil Oil</td>
+                    <td class="text-center">{{'%0.2f'| format(prediction.gen_fossil_oil| float)}}</td>
+                </tr>
+                <tr>
+                    <td class="tm-product-name">Generation Hydro</td>
+                    <td class="text-center">{{'%0.2f'| format(prediction.gen_hydro| float)}}</td>
+                </tr>
+                <tr>
+                    <td class="tm-product-name">Generation Hydro ROR</td>
+                    <td class="text-center">{{'%0.2f'| format(prediction.gen_hydro_ror| float)}}</td>
+                </tr>
+                <tr>
+                    <td class="tm-product-name">Generation Hydro Water</td>
+                    <td class="text-center">{{'%0.2f'| format(prediction.gen_hydro_water| float)}}</td>
+                </tr>
+                <tr>
+                    <td class="tm-product-name">Generation Nuclear</td>
+                    <td class="text-center">{{'%0.2f'| format(prediction.gen_nuclear| float)}}</td>
+                </tr>
+                <tr>
+                    <td class="tm-product-name">Generation Others</td>
+                    <td class="text-center">{{'%0.2f'| format(prediction.gen_other| float)}}</td>
+                </tr>
+                <tr>
+                    <td class="tm-product-name">Generation Renewable</td>
+                    <td class="text-center">{{'%0.2f'| format(prediction.gen_other_renewable| float)}}</td>
+                </tr>
+                <tr>
+                    <td class="tm-product-name">Generation Solar</td>
+                    <td class="text-center">{{'%0.2f'| format(prediction.gen_solar| float)}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+     </div>
+     <div class="row" style="float: right;">
+         <div>
+            <a href="#" onclick="show()">More Details</a>
+         </div>
+
+     </div>
+            </div>
+        </div>
+</div>
+<br/>
+<br/>
+
+{% endblock content %}
+
+{% block extrafooter%}
+<script>
+    window.onload = function() {
+  document.getElementById('hiddentable').style.display = 'none';
+};
+</script>
+<script>
+    function show() {
+      var x = document.getElementById("hiddentable");
+      if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
+      }
+    }
+</script>
+{% endblock%}

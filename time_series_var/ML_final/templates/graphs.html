@@ -1,0 +1,468 @@
+{% extends 'base.html'%}
+{% block content %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<div class="page-header header-filter" data-parallax="true"
+    style="background-image: url('static/assets/img/energy-prediction.png')">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h1 class="title">Graphs</h1>
+                
+                <br>
+                
+            </div>
+        </div>
+    </div>
+</div>
+<div class="main main-raised">
+    <div class="container">
+        <div class="section text-center">
+            <div class="row">
+                <div class="col-md-8 ml-auto mr-auto">
+                    <h2 class="title">Price and Load vs Time</h2>
+                    <br/>
+                 </div>
+            </div> 
+             </div>  
+    <div style="width:100%;">
+    <canvas id="myChart"></canvas>
+</div><br/><br/>
+ <div style="width:100%;">
+    <canvas id="chart2"></canvas>
+</div><br/><br/>
+<div style="width:100%;">
+    <canvas id="chart3"></canvas>
+</div><br/><br/>
+<div style="width:100%;">
+    <canvas id="chart4"></canvas>
+</div><br/>
+</div>
+    </div>
+
+                
+       
+   <script>
+     
+      window.addEventListener('load', setup);
+
+      async function setup() {
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const dataTemps = await getData();
+        const myChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: dataTemps.time,
+           
+            datasets: [
+              {
+               
+                fontColor:'#000000',
+                fontSize:14,
+                 label: 'price (€)',
+                data: dataTemps.price15,
+                fill: false,
+                yAxisID: 'p',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                borderWidth: 1
+               
+              },
+             {
+                
+                fontColor:'black',
+            fontSize:14,
+            label: 'load (MW)',
+                data: dataTemps.load15,
+                 fill: false,
+                yAxisID: 'l',
+                borderColor: 'rgba(99, 132, 255, 1)',
+                backgroundColor: 'rgba(99, 132, 255, 0.5)',
+                borderWidth: 1
+              }
+            ]
+          },
+          options: {
+              title: {
+                  display: true,
+                  text: "Price and Load Vs Month (Year 2015)",
+                  fontColor:'#000000',
+                  fontSize:18
+                  
+              },
+              scales: {
+                  xAxes: [{
+                    
+                    stacked: true,
+                    scaleLabel: {
+                    display: true,
+                    fontColor:'#000000',
+            fontSize:14,
+                    labelString: 'Months'
+                    },ticks: {fontSize: 14, fontColor:'black'}
+                  }],
+                  yAxes: [{
+                  ticks: {fontSize: 14, fontColor:'black'},
+                     id: 'p',
+                     type: 'linear',
+                     position: 'left',
+                     scaleLabel: {
+                        display: true,
+                        fontColor:'#000000',
+            fontSize:14,
+                        labelString: 'Price in €'
+                     }
+                  }, {
+                     ticks: {fontSize: 14, fontColor:'black'},
+                     id: 'l',
+                     type: 'linear',
+                     position: 'right',
+                     scaleLabel: {
+                        display: true,
+                        fontColor:'#000000',
+            fontSize:14,
+                        labelString: 'Load in MegaWatt'
+                     }
+                  }]
+             }
+          }
+        });
+      }
+      
+      
+      
+       async function getData() {
+        // const response = await fetch('testdata.csv');
+        const response = await fetch('static/energymean1.csv');
+        const data = await response.text();
+        const time = [];
+        const price15 = [];
+        const load15 = [];
+        
+        const rows = data.split('\n').slice(1);
+        rows.forEach(row => {
+          const cols = row.split(',');
+          time.push(cols[0]);
+          price15.push(parseFloat(cols[1]));
+          load15.push(parseFloat(cols[2]));
+         
+         
+         
+        });
+        return { time, price15, load15};
+      }
+   <!--    end first graph-->
+    window.addEventListener('load', setup2);
+    async function setup2() {
+        const ctx = document.getElementById('chart2').getContext('2d');
+        const dataTemps = await getData2();
+        const myChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: dataTemps.time,
+            datasets: [
+              {
+                label: 'price (€)',
+                fontColor:'#000000',
+            fontSize:14,
+                data: dataTemps.price16,
+                fill: false,
+                yAxisID: 'p',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                borderWidth: 1
+               
+              },
+             {
+                label: 'load (MW)',
+                fontColor:'#000000',
+            fontSize:14,
+                data: dataTemps.load16,
+                 fill: false,
+                yAxisID: 'l',
+                borderColor: 'rgba(99, 132, 255, 1)',
+                backgroundColor: 'rgba(99, 132, 255, 0.5)',
+                borderWidth: 1
+              }
+            ]
+          },
+          options: {
+           title: {
+      display: true,
+      text: "Price and Load Vs Month (Year 2016)",
+      fontColor:'#000000',
+            fontSize:18
+    },
+          scales: {
+           xAxes: [{
+        stacked: true,
+         scaleLabel: {
+            display: true,
+            fontColor:'#000000',
+            fontSize:14,
+            labelString: 'Months'
+          },ticks: {fontSize: 14, fontColor:'black'}
+      }],
+      yAxes: [{
+       ticks: {fontSize: 14, fontColor:'black'},
+        id: 'p',
+        type: 'linear',
+        position: 'left',
+        scaleLabel: {
+            display: true,
+            fontColor:'#000000',
+            fontSize:14,
+            labelString: 'Price in €'
+          },
+      }, {
+        ticks: {fontSize: 14, fontColor:'black'},
+        id: 'l',
+        type: 'linear',
+        position: 'right',
+        scaleLabel: {
+            display: true,
+            fontColor:'#000000',
+            fontSize:14,
+            labelString: 'Load in MegaWatt'
+          },
+        }]
+        }
+        
+        
+        }
+        });
+      }
+    
+      
+       async function getData2() {
+       
+        const response = await fetch('static/energymean1.csv');
+        const data = await response.text();
+        const time = [];
+        
+        const price16 = [];
+        const load16 = [];
+        const rows = data.split('\n').slice(1);
+        rows.forEach(row => {
+          const cols = row.split(',');
+          time.push(cols[0]);
+          
+          price16.push(parseFloat(cols[4]));
+          load16.push(parseFloat(cols[5]));
+         
+         
+        });
+        return { time, price16,load16 };
+      }
+      
+        <!-- end second chart-->   
+     
+        window.addEventListener('load', setup3);
+    async function setup3() {
+        const ctx = document.getElementById('chart3').getContext('2d');
+        const dataTemps = await getData3();
+        const myChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: dataTemps.time,
+            datasets: [
+              {
+                label: 'price (€)',
+                fontColor:'#000000',
+            fontSize:14,
+                data: dataTemps.price17,
+                fill: false,
+                yAxisID: 'p',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                borderWidth: 1
+               
+              },
+             {
+                label: 'load (MW)',
+                fontColor:'#000000',
+            fontSize:14,
+                data: dataTemps.load17,
+                 fill: false,
+                yAxisID: 'l',
+                borderColor: 'rgba(99, 132, 255, 1)',
+                backgroundColor: 'rgba(99, 132, 255, 0.5)',
+                borderWidth: 1
+              }
+            ]
+          },
+          options: {
+           title: {
+      display: true,
+      text: "Price and Load Vs Month (Year 2017)",
+      fontColor:'#000000',
+            fontSize:18
+    },
+           scales: {
+           xAxes: [{
+        stacked: true,
+         scaleLabel: {
+            display: true,
+            fontColor:'#000000',
+            fontSize:14,
+            labelString: 'Months'
+          },
+         ticks: {fontSize: 14, fontColor:'black'}
+      }],
+      yAxes: [{
+       ticks: {fontSize: 14, fontColor:'black'},
+        id: 'p',
+        type: 'linear',
+        position: 'left',
+        scaleLabel: {
+            display: true,
+            fontColor:'#000000',
+            fontSize:14,
+            labelString: 'Price in €'
+          },
+          
+          
+      }, {
+        ticks: {fontSize: 14, fontColor:'black'},
+        id: 'l',
+        type: 'linear',
+        position: 'right',
+        scaleLabel: {
+            display: true,
+            fontColor:'#000000',
+            fontSize:14,
+            labelString: 'Load in MegaWatt'
+          },
+         
+        }]
+        }
+        }
+        });
+      }
+      <!-- end third chart-->   
+      
+       async function getData3() {
+       
+        const response = await fetch('static/energymean1.csv');
+        const data = await response.text();
+        const time = [];
+        
+        const price17 = [];
+        const load17 = [];
+        const rows = data.split('\n').slice(1);
+        rows.forEach(row => {
+          const cols = row.split(',');
+          time.push(cols[0]);
+          
+          price17.push(parseFloat(cols[7]));
+          load17.push(parseFloat(cols[8]));
+         
+         
+        });
+        return { time, price17,load17 };
+      }
+      
+      <!-- third graph function end -->
+       window.addEventListener('load', setup4);
+    async function setup4() {
+        const ctx = document.getElementById('chart4').getContext('2d');
+        const dataTemps = await getData4();
+        const myChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: dataTemps.time,
+            datasets: [
+              {
+                label: 'price (€)',
+                fontColor:'#000000',
+            fontSize:14,
+                data: dataTemps.price18,
+                fill: false,
+                yAxisID: 'p',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                borderWidth: 1
+               
+              },
+             {
+                label: 'load (MW)',
+                fontColor:'#000000',
+                fontSize:14,
+                data: dataTemps.load18,
+                 fill: false,
+                yAxisID: 'l',
+                borderColor: 'rgba(99, 132, 255, 1)',
+                backgroundColor: 'rgba(99, 132, 255, 0.5)',
+                borderWidth: 1
+              }
+            ]
+          },
+          options: {
+           title: {
+      display: true,
+      text: "Price and Load Vs Month (Year 2018)",
+      fontColor:'#000000',
+            fontSize:18
+    },
+           scales: {
+           xAxes: [{
+        stacked: true,
+         scaleLabel: {
+            display: true,
+            fontColor:'#000000',
+            fontSize:14,
+            labelString: 'Months'
+          },ticks: {fontSize: 14, fontColor:'black'}
+      }],
+      yAxes: [{
+       ticks: {fontSize: 14, fontColor:'black'},
+        id: 'p',
+        type: 'linear',
+        position: 'left',
+        scaleLabel: {
+            display: true,
+            fontColor:'#000000',
+            fontSize:14,
+            labelString: 'Price in €'
+          },
+      }, {
+        ticks: {fontSize: 14, fontColor:'black'},
+        id: 'l',
+        type: 'linear',
+        position: 'right',
+        scaleLabel: {
+            display: true,
+            fontColor:'#000000',
+            fontSize:14,
+            labelString: 'Load in MegaWatt'
+          },
+        }]
+        }
+        }
+        });
+      }
+      <!-- end fourth chart-->   
+      
+       async function getData4() {
+       
+        const response = await fetch('static/energymean1.csv');
+        const data = await response.text();
+        const time = [];
+        
+        const price18 = [];
+        const load18 = [];
+        const rows = data.split('\n').slice(1);
+        rows.forEach(row => {
+          const cols = row.split(',');
+          time.push(cols[0]);
+          
+          price18.push(parseFloat(cols[10]));
+          load18.push(parseFloat(cols[11]));
+         
+         
+        });
+        return { time, price18,load18 };
+      }
+    </script>
+    
+
+{% endblock content %}
